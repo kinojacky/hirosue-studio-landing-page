@@ -1,3 +1,6 @@
+// Set current year
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
 console.log(`
   ,-~~-.___.
  / |  '     \\     我想變成妳的冬天
