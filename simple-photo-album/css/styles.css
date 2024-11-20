@@ -1,0 +1,159 @@
+i {
+  -webkit-text-stroke: 0.5px;
+}
+
+.masthead {
+  height: 50vh;
+  min-height: 300px;
+  background-image: url('../imgs/masthead_unplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.photo-item {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding-top: 47%;
+  border-radius: .55rem;
+  border: solid transparent 5px;
+}
+
+@media (min-width: 768px) {
+  .photo-item {
+    padding-top: 24%;
+  }
+}
+
+.photo-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 300ms;
+}
+
+.photo-item:hover img {
+  transform: scale(1.1);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content {
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-menubar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 70px;
+  border-radius: 0 0 .35rem .35rem;
+}
+
+.close,
+.download {
+  color: #ffffff;
+  position: absolute;
+  top: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.close {
+  right: 1.2rem;
+}
+
+.download {
+  left: 1.2rem;
+}
+
+.download.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.filename {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #aaaaaa;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 2rem .55rem;
+  margin-top: -50px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 2rem;
+  transition: 0.6s ease;
+  border-radius: .35rem;
+  user-select: none;
+  -webkit-user-select: none;
+  text-decoration: none;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hs-logo {
+  color: #dc3545;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 400ms;
+}
+
+.hs-logo:hover {
+  color: #d7d7d7;
+}
+
+.hs-logo .bi {
+  -webkit-text-stroke: 1px !important;
+}

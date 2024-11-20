@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="title" content="HDB Resale Calculator - PR First-Time Buyer Guide">
+  <meta name="description" content="Calculate costs for PR first-time HDB buyers in Singapore. Includes loan amounts, down payment, ABSD, TDSR, and MSR calculations.">
+  <meta name="keywords" content="Hirosue Cloud, cloud technology, creativity, digital solutions, innovative cloud services">
+  <meta name="author" content="Jacky Kiu">
+  
+  <title>HDB Resale Calculator - PR First-Time Buyer Guide</title>
+  
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="googlebot-news" content="index, follow">
+  <meta name="msnbot" content="index, follow">
+  
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="HDB Resale Calculator - PR First-Time Buyer Guide">
+  <meta property="og:description" content="Complete calculator tool for PR first-time HDB buyers in Singapore. Calculate loan, down payment, ABSD, TDSR, and MSR.">
+  <meta property="og:image" content="https://HirosueCloud.com/hdb-resale-price-calculator/imgs/img_hdb_calculator.png">
+  <meta property="og:url" content="https://HirosueCloud.com/hdb-resale-price-calculator">
+  <meta property="og:type" content="website">
+
+  <!-- Canonical URL (important for SEO) -->
+  <link rel="canonical" href="https://HirosueCloud.com/hdb-resale-price-calculator">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+  
+  <!-- Theme color -->
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- Mobile App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="HDB Resale Calculator">
+  
+  <!-- CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Cache Control (optional) -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  
+  <style>
+    .card-header h3 {
+      color: #ffffff;
+    }
+    
+    .info-icon {
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #f8f8f8;
+      margin-left: 0.5rem;
+    }
+    
+    .info-icon:hover {
+      color: #aaaaaa;
+    }
+
+    .red-btn-close {
+      position: absolute;
+      right: 1.5rem;
+      bottom: -1.5rem;
+      font-size: 1.2rem;
+      color: #ffffff;
+      background-color: #bd3847;
+      border: 0;
+      border-radius: 50%;
+      padding: 0.5rem 0.8rem;
+      margin: 0;
+      -webkit-text-stroke-width: 1px;
+    }
+
+    .red-btn-close:hover {
+      color: #cecece;
+      background-color: #751733;
+    }
+
+    .hs-logo {
+      color: #dc3545;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 400ms;
+    }
+
+    .hs-logo:hover {
+      color: #d7d7d7;
+    }
+
+    .hs-logo .bi {
+      -webkit-text-stroke: 1px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-12 mb-5 text-center">
+        <a href="https://billing.exabytes.sg/mypanel/aff.php?aff=8201164"><img src="https://billing.exabytes.sg/mypanel/assets/exabytes/img/affiliate/all-in-one/728x90-jan24-affiliate-banner.gif" width="728" height="90" border="0" class="img-fluid"></a>
+      </div>
+    </div>
+
+    <!-- Price Calculator Card -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">HDB Resale Price Calculator <br>(PR First-Time Buyer)</h3>
+            <i class="bi bi-info-circle info-icon ms-2" data-bs-toggle="modal" data-bs-target="#priceCalcModal"></i>
+          </div>
+          <div class="card-body">
+            <form id="calculatorForm">
+              <div class="mb-4">
+                <label for="propertyPrice" class="form-label">Property Price (SGD)</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="propertyPrice" min="0" step="1000" required>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Agent Fee Percentage (Optional)</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" id="agentFeePercentage" value="1" min="0" max="100" step="0.1">
+                  <span class="input-group-text">%</span>
+                </div>
+                <div class="form-text">Typical agent fee is around 1-2% of property price</div>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Calculate</button>
+              </div>
+            </form>
+
+            <div id="results" class="mt-4" style="display: none;">
+              <h4 class="border-bottom pb-2">Calculation Results</h4>
+
+              <div class="mb-4">
+                <h5 class="text-primary">Bank Loan (75%)</h5>
+                <div class="h4" id="bankLoan">$0</div>
+              </div>
+
+              <div class="mb-4">
+                <h5 class="text-primary">Down Payment (25%)</h5>
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="mb-1">Minimum Cash (5%)</p>
+                        <div class="h5" id="cashDownPayment">$0</div>
+                      </div>
+                      <div class="col-md-6">
+                        <p class="mb-1">CPF/Cash (20%)</p>
+                        <div class="h5" id="cpfDownPayment">$0</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <h5 class="text-primary">ABSD (5%)</h5>
+                <div class="h4" id="absd">$0</div>
+                <small class="text-muted">Additional Buyer's Stamp Duty for PR first-time buyers</small>
+              </div>
+
+              <div class="mb-4" id="agentFeeResult">
+                <h5 class="text-primary">Agent Fee</h5>
+                <div class="h4" id="agentFeeAmount">$0</div>
+                <small class="text-muted">Based on <span id="agentFeePercentageDisplay">1</span>% of property price</small>
+              </div>
+
+              <div class="card bg-info text-white">
+                <div class="card-body">
+                  <h5 class="card-title">Total Cash/CPF Required Upfront</h5>
+                  <div class="h3" id="totalUpfront">$0</div>
+                  <small>(Down Payment + ABSD + Agent Fee)</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TDSR Calculator Card -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-success d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Total Debt Servicing Ratio (TDSR) Calculator</h3>
+            <i class="bi bi-info-circle info-icon ms-2" data-bs-toggle="modal" data-bs-target="#tdsrModal"></i>
+          </div>
+          <div class="card-body">
+            <form id="tdsrForm">
+              <div class="mb-3">
+                <label class="form-label">Monthly Gross Income</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="monthlyIncome" min="0" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Other Monthly Debt Payments</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="otherDebts" value="0" min="0">
+                </div>
+                <div class="form-text">Include car loans, personal loans, credit cards, etc.</div>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success">Calculate TDSR</button>
+              </div>
+            </form>
+
+            <div id="tdsrResults" class="mt-4" style="display: none;">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="text-success">Maximum Monthly Debt Payments (55% TDSR)</h5>
+                  <div class="h4" id="maxTDSR">$0</div>
+                  <div class="mt-3">
+                    <h6>Available for Housing Loan</h6>
+                    <div class="h5" id="availableForHousing">$0</div>
+                    <small class="text-muted">(After deducting other debt payments)</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MSR Calculator Card -->
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-warning d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Mortgage Servicing Ratio (MSR) Calculator</h3>
+            <i class="bi bi-info-circle info-icon ms-2" data-bs-toggle="modal" data-bs-target="#msrModal"></i>
+          </div>
+          <div class="card-body">
+            <form id="msrForm">
+              <div class="mb-3">
+                <label class="form-label">Monthly Gross Income</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="msrMonthlyIncome" min="0" required>
+                </div>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-warning">Calculate MSR</button>
+              </div>
+            </form>
+
+            <div id="msrResults" class="mt-4" style="display: none;">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="text-warning">Maximum Monthly Mortgage Payment (30% MSR)</h5>
+                  <div class="h4" id="maxMSR">$0</div>
+                  <small class="text-muted">This is the maximum monthly housing loan payment allowed based on MSR</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 mt-5 text-center">
+        <a href="https://pawns.app/?r=6073443" target="_blank">
+          <img src="https://cdn.pawns.app/images/b/728.jpg" alt="Pawns.app" class="img-fluid">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Price Calculator Modal -->
+  <div class="modal fade" id="priceCalcModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">About HDB Resale Price Calculator</h5>
+        </div>
+        <div class="modal-body">
+          <h6>For PR First-Time Buyers:</h6>
+          <ul>
+            <li>Bank loan: Maximum 75% of property value/price</li>
+            <li>Down payment: 25% of property value
+              <ul>
+                <li>Minimum 5% must be in cash</li>
+                <li>Remaining 20% can be paid using CPF or cash</li>
+              </ul>
+            </li>
+            <li>ABSD (Additional Buyer's Stamp Duty): 5% for first-time PR buyers</li>
+            <li>Agent fee is typically 1-2% of property price (negotiable)</li>
+          </ul>
+          <p class="text-muted"><small>Note: Must be a PR for at least 3 years before purchasing</small></p>
+        </div>
+        <button type="button" class="red-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- TDSR Modal -->
+  <div class="modal fade" id="tdsrModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">About Total Debt Servicing Ratio (TDSR)</h5>
+        </div>
+        <div class="modal-body">
+          <p>TDSR is a framework that limits your total monthly debt obligations to 55% of your gross monthly income.</p>
+          <h6>Includes:</h6>
+          <ul>
+            <li>Housing loan payments</li>
+            <li>Car loans</li>
+            <li>Personal loans</li>
+            <li>Credit card debts</li>
+            <li>Student loans</li>
+            <li>Any other debt payments</li>
+          </ul>
+          <p>For example, if your monthly income is $5,000, your total monthly debt payments cannot exceed $2,750.</p>
+          <p class="text-muted"><small>Note: You can include combined household income if applying as a family</small></p>
+        </div>
+        <button type="button" class="red-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- MSR Modal -->
+  <div class="modal fade" id="msrModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">About Mortgage Servicing Ratio (MSR)</h5>
+        </div>
+        <div class="modal-body">
+          <p>MSR is a restriction specific to HDB property loans that limits your monthly mortgage payment to 30% of your gross monthly income.</p>
+          <h6>Key Points:</h6>
+          <ul>
+            <li>Applies only to HDB loans</li>
+            <li>Based on gross monthly income</li>
+            <li>Considers only the housing loan payment</li>
+            <li>Can use combined income for family applications</li>
+          </ul>
+          <p>For example, if your monthly income is $5,000, your monthly housing loan payment cannot exceed $1,500.</p>
+          <p class="text-muted"><small>Note: Both TDSR and MSR limits must be met to qualify for the loan</small></p>
+        </div>
+        <button type="button" class="red-btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <p class="mb-0"><a href="https://hirosuecloud.com" class="hs-logo"><i class="bi bi-chevron-left"></i>H<i class="bi bi-chevron-right"></i></a> &copy; 2024 HDB Resale Calculator. All rights reserved.</p>
+      <small class="text-secondary">
+        Released under the MIT License
+      </small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Original Price Calculator
+    document.getElementById('calculatorForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const propertyPrice = parseFloat(document.getElementById('propertyPrice').value) || 0;
+      const agentFeePercentage = parseFloat(document.getElementById('agentFeePercentage').value) || 0;
+
+      const bankLoan = propertyPrice * 0.75;
+      const totalDownPayment = propertyPrice * 0.25;
+      const cashDownPayment = propertyPrice * 0.05;
+      const cpfDownPayment = propertyPrice * 0.20;
+      const absd = propertyPrice * 0.05;
+      const agentFee = propertyPrice * (agentFeePercentage / 100);
+      const totalUpfront = totalDownPayment + absd + agentFee;
+
+      document.getElementById('bankLoan').textContent = formatCurrency(bankLoan);
+      document.getElementById('cashDownPayment').textContent = formatCurrency(cashDownPayment);
+      document.getElementById('cpfDownPayment').textContent = formatCurrency(cpfDownPayment);
+      document.getElementById('absd').textContent = formatCurrency(absd);
+      document.getElementById('agentFeeAmount').textContent = formatCurrency(agentFee);
+      document.getElementById('agentFeePercentageDisplay').textContent = agentFeePercentage;
+      document.getElementById('totalUpfront').textContent = formatCurrency(totalUpfront);
+
+      document.getElementById('results').style.display = 'block';
+    });
+
+    // TDSR Calculator
+    document.getElementById('tdsrForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value) || 0;
+      const otherDebts = parseFloat(document.getElementById('otherDebts').value) || 0;
+
+      const maxTDSR = monthlyIncome * 0.55;
+      const availableForHousing = Math.max(0, maxTDSR - otherDebts);
+
+      document.getElementById('maxTDSR').textContent = formatCurrency(maxTDSR);
+      document.getElementById('availableForHousing').textContent = formatCurrency(availableForHousing);
+      document.getElementById('tdsrResults').style.display = 'block';
+    });
+
+    // MSR Calculator
+    document.getElementById('msrForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const monthlyIncome = parseFloat(document.getElementById('msrMonthlyIncome').value) || 0;
+      const maxMSR = monthlyIncome * 0.30;
+
+      document.getElementById('maxMSR').textContent = formatCurrency(maxMSR);
+      document.getElementById('msrResults').style.display = 'block';
+    });
+
+    function formatCurrency(amount) {
+      return '$' + amount.toLocaleString('en-SG', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+# robots.txt for HDB Calculator
+
+# Allow all robots full access
+User-agent: *
+Allow: /
+Allow: /calculator
+Allow: /about
+Allow: /disclaimer
+
+# Prevent caching of calculator results
+Disallow: /calculator?*
+
+# Common directories to disallow
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /private/
+
+# Crawl-delay for all bots
+Crawl-delay: 10
+
+# Sitemap location
+# Sitemap: https://your-domain.com/sitemap.xml

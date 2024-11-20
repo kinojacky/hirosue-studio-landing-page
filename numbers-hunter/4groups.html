@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="title" content="Number Hunter (0.0.1 beta) - Homepage">
+  <meta name="description" content="A fun and engaging number matching game that generates random numbers and finds matches between different groups. The game comes in two variations: a 2-group version and a more challenging 4-group version.">
+  <meta name="keywords" content="Hirosue Cloud, cloud technology, creativity, digital solutions, innovative cloud services">
+  <meta name="author" content="Jacky Kiu">
+  
+  <title>Number Hunter (0.0.1 beta) - Homepage</title>
+  
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta name="googlebot-news" content="index, follow">
+  <meta name="msnbot" content="index, follow">
+  
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="Number Hunter">
+  <meta property="og:description" content="A fun and engaging number matching game that generates random numbers and finds matches between different groups. The game comes in two variations: a 2-group version and a more challenging 4-group version.">
+  <meta property="og:image" content="https://HirosueCloud.com/numbers-hunter/imgs/img_random_number.png">
+  <meta property="og:url" content="https://HirosueCloud.com/numbers-hunter">
+  <meta property="og:type" content="website">
+  
+  <!-- Canonical URL (importaßnt for SEO) -->
+  <link rel="canonical" href="https://HirosueCloud.com/numbers-hunter">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+  
+  <!-- Theme color -->
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- Mobile App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Number Hunter">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="content">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-12 mb-5 text-center">
+          <a href="https://billing.exabytes.sg/mypanel/aff.php?aff=8201164"><img src="https://billing.exabytes.sg/mypanel/assets/exabytes/img/affiliate/all-in-one/728x90-jan24-affiliate-banner.gif" width="728" height="90" border="0" class="img-fluid"></a>
+        </div>
+      </div>
+
+      <h1 class="text-center mb-4">Number Hunter (4 groups)</h1>
+
+      <!-- Number boxes -->
+      <div class="d-flex justify-content-center mb-4">
+        <div id="numberBoxes" class="d-flex">
+          <div class="number-box"></div>
+          <div class="number-box"></div>
+          <div class="number-box"></div>
+          <div class="number-box"></div>
+          <div class="number-box"></div>
+          <div class="number-box"></div>
+        </div>
+      </div>
+
+      <!-- Control buttons -->
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <button id="startBtn" class="btn btn-primary px-4">Start Run</button>
+        <button id="resetBtn" class="btn btn-secondary px-4">Reset</button>
+      </div>
+
+      <!-- Random number groups - Now 4 groups -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Random Number <br>Group 1</h5>
+              <div id="group1Current" class="current-row mb-2"></div>
+              <hr>
+              <div id="group1History"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Random Number <br>Group 2</h5>
+              <div id="group2Current" class="current-row mb-2"></div>
+              <hr>
+              <div id="group2History"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Random Number <br>Group 3</h5>
+              <div id="group3Current" class="current-row mb-2"></div>
+              <hr>
+              <div id="group3History"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Random Number <br>Group 4</h5>
+              <div id="group4Current" class="current-row mb-2"></div>
+              <hr>
+              <div id="group4History"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mt-5 text-center">
+          <a href="https://pawns.app/?r=6073443" target="_blank"><img src="https://cdn.pawns.app/images/b/728.jpg" alt="Pawns.app" class="img-fluid"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white py-4">
+    <div class="container text-center">
+      <p class="mb-0"><a href="https://hirosuecloud.com" class="hs-logo"><i class="bi bi-chevron-left"></i>H<i class="bi bi-chevron-right"></i></a> &copy; 2024 Number Hunter. All rights reserved.</p>
+      <small class="text-secondary">
+        Released under the MIT License
+      </small>
+    </div>
+  </footer>
+
+  <script>
+    class NumberHunter {
+      constructor() {
+        this.matchedNumbers = Array(6).fill(null);
+        this.isRunning = false;
+        this.isComplete = false;
+        this.intervalId = null;
+        this.groupsCount = 4;  // Now handling 4 groups
+
+        // Initialize DOM elements
+        this.startBtn = document.getElementById('startBtn');
+        this.resetBtn = document.getElementById('resetBtn');
+        this.numberBoxes = Array.from(document.querySelectorAll('.number-box'));
+
+        // Initialize arrays for current numbers and history for all groups
+        this.groupCurrents = Array.from({ length: this.groupsCount }, (_, i) =>
+          document.getElementById(`group${i + 1}Current`));
+        this.groupHistories = Array.from({ length: this.groupsCount }, (_, i) =>
+          document.getElementById(`group${i + 1}History`));
+
+        // Bind event listeners
+        this.startBtn.addEventListener('click', () => this.toggleGeneration());
+        this.resetBtn.addEventListener('click', () => this.reset());
+      }
+
+      generateRandomNumbers() {
+        const numbers = new Set();
+        while (numbers.size < 7) {
+          numbers.add(Math.floor(Math.random() * 49) + 1);
+        }
+        return Array.from(numbers).sort((a, b) => a - b);
+      }
+
+      checkForMatches(allGroups) {
+        // Find numbers that appear in all groups
+        const matches = allGroups[0].filter(num =>
+          allGroups.every(group => group.includes(num)));
+
+        if (matches.length > 0) {
+          // Filter out matches that are already in matchedNumbers
+          const newMatches = matches.filter(match => !this.matchedNumbers.includes(match));
+
+          newMatches.forEach(matchedNumber => {
+            const nextEmptyIndex = this.matchedNumbers.findIndex(num => num === null);
+            if (nextEmptyIndex !== -1) {
+              this.matchedNumbers[nextEmptyIndex] = matchedNumber;
+              this.numberBoxes[nextEmptyIndex].textContent = matchedNumber;
+            }
+          });
+
+          if (this.matchedNumbers.filter(num => num !== null).length === 6) {
+            this.completeGame();
+          }
+        }
+        return matches;
+      }
+
+      createNumberSpan(number, isMatched, isDuplicate) {
+        if (isDuplicate) {
+          return `<span class="badge text-bg-secondary">${number}</span>`;
+        } else if (isMatched) {
+          return `<span class="badge text-bg-danger">${number}</span>`;
+        }
+        return `<span>${number}</span>`;
+      }
+
+      updateDisplay(allGroups) {
+        // Find matches that appear in all groups
+        const matches = allGroups[0].filter(num =>
+          allGroups.every(group => group.includes(num)));
+        const duplicateMatches = matches.filter(match =>
+          this.matchedNumbers.includes(match));
+
+        // Update each group's display
+        allGroups.forEach((numbers, index) => {
+          // Update current numbers
+          this.groupCurrents[index].textContent = numbers.join(' ');
+
+          // Create history item
+          const historyItem = document.createElement('div');
+          historyItem.className = 'history-row';
+          historyItem.innerHTML = numbers
+            .map(num => {
+              const isMatch = matches.includes(num);
+              const isDuplicate = duplicateMatches.includes(num);
+              return this.createNumberSpan(num, isMatch && !isDuplicate, isDuplicate);
+            })
+            .join(' ');
+          this.groupHistories[index].insertBefore(historyItem, this.groupHistories[index].firstChild);
+        });
+      }
+
+      startGeneration() {
+        if (this.isComplete) return;
+
+        this.isRunning = true;
+        this.startBtn.textContent = 'Stop';
+        this.startBtn.classList.replace('btn-primary', 'btn-danger');
+
+        this.intervalId = setInterval(() => {
+          // Generate numbers for all groups
+          const allGroups = Array.from({ length: this.groupsCount },
+            () => this.generateRandomNumbers());
+
+          this.updateDisplay(allGroups);
+          this.checkForMatches(allGroups);
+        }, 100);
+      }
+
+      stopGeneration() {
+        this.isRunning = false;
+        clearInterval(this.intervalId);
+        this.startBtn.textContent = 'Start Run';
+        this.startBtn.classList.replace('btn-danger', 'btn-primary');
+      }
+
+      completeGame() {
+        this.stopGeneration();
+        this.isComplete = true;
+        this.startBtn.disabled = true;
+        this.startBtn.classList.add('opacity-50');
+      }
+
+      toggleGeneration() {
+        if (this.isComplete) return;
+
+        if (this.isRunning) {
+          this.stopGeneration();
+        } else {
+          this.startGeneration();
+        }
+      }
+
+      reset() {
+        this.stopGeneration();
+        this.isComplete = false;
+        this.matchedNumbers = Array(7).fill(null);
+        this.numberBoxes.forEach(box => box.textContent = '');
+
+        // Clear all groups
+        this.groupCurrents.forEach(current => current.textContent = '');
+        this.groupHistories.forEach(history => history.innerHTML = '');
+
+        // Re-enable start button
+        this.startBtn.disabled = false;
+        this.startBtn.classList.remove('opacity-50');
+      }
+    }
+
+    // Initialize the game when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      new NumberHunter();
+    });
+  </script>
+</body>
+
+</html>
