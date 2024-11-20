@@ -18,14 +18,19 @@ const languageSymbols = {
   "ja": "日",
 };
 
+function getBasePath() {
+  // Get the path from the URL (e.g., '/simple-photo-album/')
+  const pathSegments = window.location.pathname.split("/");
+  const repoName = pathSegments[1]; // 'simple-photo-album'
+
+  return `/${repoName}`;
+}
+
 // Function to load all language data
 async function loadLanguageData() {
   try {
-    // Check if we're on GitHub Pages
-    const isGitHubPages = window.location.hostname.includes("github.io");
-
     // Construct the appropriate path
-    const basePath = isGitHubPages ? "/simple-photo-album" : "";
+    const basePath = getBasePath();
     const jsonUrl = `${basePath}/json/languages.json`;
 
     // console.log("Attempting to fetch from:", jsonUrl); // For debugging
@@ -94,11 +99,8 @@ function toggleDownloadFunctionality(enable) {
 // Function to load photo data from JSON file
 async function loadPhotoData() {
   try {
-    // Check if we're on GitHub Pages
-    const isGitHubPages = window.location.hostname.includes("github.io");
-
     // Construct the appropriate path
-    const basePath = isGitHubPages ? "/simple-photo-album" : "";
+    const basePath = getBasePath();
     const jsonUrl = `${basePath}/json/sample.json`;
 
     // console.log("Attempting to fetch from:", jsonUrl); // For debugging
@@ -110,11 +112,6 @@ async function loadPhotoData() {
   } catch (error) {
     console.error("Error loading photo data:", error);
   }
-}
-
-function getBasePath() {
-  const isGitHubPages = window.location.hostname.includes("github.io");
-  return isGitHubPages ? "/simple-photo-album" : "";
 }
 
 // Function to render photos for a specific page
