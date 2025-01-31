@@ -23,7 +23,7 @@ function getBasePath() {
   const pathSegments = window.location.pathname.split("/");
   const repoName = pathSegments[1]; // 'simple-photo-album'
 
-  return `/${repoName}`;
+  return `/${repoName}/simple-photo-album`;
 }
 
 // Function to load all language data
@@ -32,6 +32,7 @@ async function loadLanguageData() {
     // Construct the appropriate path
     const basePath = getBasePath();
     const jsonUrl = `${basePath}/json/languages.json`;
+    // const jsonUrl = `json/languages.json`;
 
     // console.log("Attempting to fetch from:", jsonUrl); // For debugging
 
@@ -102,6 +103,7 @@ async function loadPhotoData() {
     // Construct the appropriate path
     const basePath = getBasePath();
     const jsonUrl = `${basePath}/json/sample.json`;
+    // const jsonUrl = `json/sample.json`;
 
     // console.log("Attempting to fetch from:", jsonUrl); // For debugging
 
