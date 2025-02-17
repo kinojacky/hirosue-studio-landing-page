@@ -1,0 +1,96 @@
+:root {
+  --primary-color: #00f0ff;
+  --bg-color: #001824;
+  --grid-color: rgba(0, 240, 255, 0.1);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  font-family: monospace;
+  min-height: 100vh;
+}
+
+.retro-container {
+  border: 1px solid var(--primary-color);
+  padding: 20px;
+  margin: 20px;
+  background: linear-gradient(rgba(0, 240, 255, 0.05),
+      rgba(0, 240, 255, 0.02));
+}
+
+.retro-header {
+  border-bottom: 1px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.retro-title {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.grid-item {
+  background-color: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-item {
+  margin-bottom: 15px;
+}
+
+.progress-label {
+  border: 1px solid var(--primary-color);
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.retro-progress {
+  height: 20px;
+  background-color: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--primary-color);
+}
+
+.retro-progress-bar {
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.retro-footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid var(--primary-color);
+  opacity: 0.7;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .retro-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .grid-item {
+    font-size: 16px;
+  }
+
+  .retro-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .grid-item {
+    font-size: 14px;
+  }
+}
