@@ -5,79 +5,371 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="css/debug.css"> -->
-  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --primary-color: #16b6a9;
+      --bg-color: #001414;
+      --grid-color: rgba(22, 182, 169, 0.1);
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .retro-container {
+      border: 1px solid var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 2rem);
+      margin: 1rem;
+      background: linear-gradient(rgba(22, 182, 169, 0.05),
+          rgba(22, 182, 169, 0.02));
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* CRT效果 */
+    .retro-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .retro-header {
+      border-bottom: 1px solid var(--primary-color);
+      padding: 15px 20px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .retro-title {
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .content-area {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) var(--bg-color);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 自定義滾動條樣式 */
+    .content-area::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .content-area::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+
+    .content-area::-webkit-scrollbar-thumb {
+      background-color: var(--primary-color);
+      border-radius: 0;
+    }
+
+    .content-section {
+      background-color: rgba(22, 182, 169, 0.1);
+      border: 1px solid rgba(22, 182, 169, 0.3);
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .progress-container {
+      padding: 20px;
+      border-top: 1px solid var(--primary-color);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .progress-label {
+      border: 1px solid var(--primary-color);
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .retro-progress {
+      height: 20px;
+      background-color: rgba(22, 182, 169, 0.1);
+      border: 1px solid var(--primary-color);
+    }
+
+    .retro-progress-bar {
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .retro-footer {
+      padding: 10px 20px;
+      border-top: 1px solid var(--primary-color);
+      opacity: 0.7;
+      text-align: center;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    /* 響應式調整 */
+    @media (max-width: 768px) {
+      .retro-title {
+        font-size: 20px;
+      }
+    }
+
+    /* 文本閃爍效果 */
+    .blink {
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* 導航連結樣式 */
+    .progress-label {
+      display: block;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .progress-label:hover {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+    }
+
+    /* 平滑滾動效果 */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="retro-container">
-      <div class="retro-header d-flex justify-content-between align-items-center">
-        <div class="retro-title">Dranesville</div>
-        <div>19% Complete</div>
+  <div class="retro-container">
+    <div class="retro-header d-flex justify-content-between align-items-center">
+      <div class="retro-title">我的個人簡介</div>
+      <div>系統線上 <span class="blink">◉</span></div>
+    </div>
+
+    <!-- 可滾動內容區域 -->
+    <div class="content-area">
+      <div class="content-section">
+        <div class="section-title">關於我</div>
+        <p>
+          我是一位熱愛科技的開發者，對於復古計算機和界面設計有濃厚興趣。
+          我擁有豐富的網頁開發經驗，尤其專注於創造獨特的用戶體驗和視覺設計。
+        </p>
+        <p>
+          在我的職業生涯中，我參與了多個大型項目的開發工作，涵蓋從前端界面到後端系統的各個方面。
+          我尤其喜歡研究計算機發展的歷史，並在現代設計中融入復古元素。
+        </p>
       </div>
 
-      <!-- 數字網格 -->
-      <div class="row g-2 mb-4">
-        <div class="col-6 col-sm-4 col-md-2">
-          <div class="grid-item">1</div>
+      <div id="frontend" class="content-section">
+        <div class="section-title">前端技能</div>
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>HTML5 語義化標籤</li>
+              <li>CSS3 動畫與過渡效果</li>
+              <li>JavaScript ES6+</li>
+              <li>響應式設計</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <li>現代前端框架 (React, Vue)</li>
+              <li>UI/UX 設計原則</li>
+              <li>網頁性能優化</li>
+              <li>跨瀏覽器兼容性</li>
+            </ul>
+          </div>
         </div>
-        <div class="col-6 col-sm-4 col-md-2">
-          <div class="grid-item">8</div>
-        </div>
-        <div class="col-6 col-sm-4 col-md-2">
-          <div class="grid-item">5</div>
-        </div>
-        <!-- 更多網格項目 -->
       </div>
 
-      <!-- 進度條區域 -->
+      <div id="backend" class="content-section">
+        <div class="section-title">後端技能</div>
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li>Node.js</li>
+              <li>Express.js</li>
+              <li>RESTful API 設計</li>
+              <li>微服務架構</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <li>身份驗證與授權</li>
+              <li>伺服器安全</li>
+              <li>效能監控</li>
+              <li>負載均衡</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="design" class="content-section">
+        <div class="section-title">設計經驗</div>
+        <div class="mb-3">
+          <h5>UI/UX 設計師 | 創意工作室</h5>
+          <div>2019-2020</div>
+          <p>負責公司多個項目的用戶界面設計，創建用戶流程圖，設計系統和交互原型。注重用戶體驗和視覺一致性，為客戶提供優質的設計解決方案。</p>
+        </div>
+        <div class="mb-3">
+          <h5>網頁設計師 | 自由職業</h5>
+          <div>2017-2019</div>
+          <p>為多家初創企業和小型公司提供網頁設計服務，包括品牌識別，視覺設計指南和響應式網站設計。</p>
+        </div>
+      </div>
+
+      <div id="database" class="content-section">
+        <div class="section-title">資料庫經驗</div>
+        <div class="mb-3">
+          <h5>資料庫管理員 | 數據解決方案公司</h5>
+          <div>2016-2018</div>
+          <p>負責設計、優化和維護關係型和非關係型數據庫，包括 MySQL, PostgreSQL 和 MongoDB。建立資料備份和恢復流程，確保數據安全和完整性。</p>
+        </div>
+        <div class="mb-3">
+          <h5>資料分析師 | 市場研究公司</h5>
+          <div>2014-2016</div>
+          <p>進行數據收集、清洗和分析，使用 SQL 和資料視覺化工具生成報告，為公司決策提供數據支持。</p>
+        </div>
+      </div>
+
+      <div id="management" class="content-section">
+        <div class="section-title">管理經驗</div>
+        <div class="mb-3">
+          <h5>技術團隊負責人 | 科技創新公司</h5>
+          <div>2020年至今</div>
+          <p>管理10人技術團隊，負責項目規劃、資源分配和團隊協調。制定技術發展策略，推動敏捷開發流程，提高團隊效率和產品質量。</p>
+        </div>
+        <div class="mb-3">
+          <h5>項目經理 | 數字解決方案有限公司</h5>
+          <div>2018-2020</div>
+          <p>管理多個中大型項目，協調開發、設計和市場團隊，確保項目按時交付。建立項目管理流程和最佳實踐。</p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-title">教育背景</div>
+        <div class="mb-3">
+          <h5>計算機科學碩士</h5>
+          <div>國立大學，2015-2017</div>
+        </div>
+        <div class="mb-3">
+          <h5>計算機科學學士</h5>
+          <div>國立大學，2011-2015</div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-title">興趣愛好</div>
+        <p>
+          復古計算機收藏，電子音樂製作，開源項目貢獻，科技歷史研究，
+          戶外徒步旅行，攝影，科幻小說閱讀。
+        </p>
+      </div>
+    </div>
+
+    <!-- 進度條區域 -->
+    <div class="progress-container">
       <div class="row g-3">
         <div class="col-sm-6 col-md">
           <div class="progress-item">
-            <div class="progress-label">01</div>
+            <a href="#frontend" class="progress-label text-decoration-none">前端</a>
             <div class="progress retro-progress">
-              <div class="progress-bar retro-progress-bar" style="width: 30%"></div>
+              <div class="progress-bar retro-progress-bar" style="width: 90%"></div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md">
           <div class="progress-item">
-            <div class="progress-label">02</div>
+            <a href="#backend" class="progress-label text-decoration-none">後端</a>
             <div class="progress retro-progress">
-              <div class="progress-bar retro-progress-bar" style="width: 11%"></div>
+              <div class="progress-bar retro-progress-bar" style="width: 75%"></div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md">
           <div class="progress-item">
-            <div class="progress-label">03</div>
+            <a href="#design" class="progress-label text-decoration-none">設計</a>
             <div class="progress retro-progress">
-              <div class="progress-bar retro-progress-bar" style="width: 9%"></div>
+              <div class="progress-bar retro-progress-bar" style="width: 85%"></div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md">
           <div class="progress-item">
-            <div class="progress-label">04</div>
+            <a href="#database" class="progress-label text-decoration-none">資料庫</a>
             <div class="progress retro-progress">
-              <div class="progress-bar retro-progress-bar" style="width: 27%"></div>
+              <div class="progress-bar retro-progress-bar" style="width: 70%"></div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md">
           <div class="progress-item">
-            <div class="progress-label">05</div>
+            <a href="#management" class="progress-label text-decoration-none">管理</a>
             <div class="progress retro-progress">
-              <div class="progress-bar retro-progress-bar" style="width: 18%"></div>
+              <div class="progress-bar retro-progress-bar" style="width: 80%"></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="retro-footer text-center">
-        0x 150B4A : 0x 0AEAFC
-      </div>
+    <div class="retro-footer">
+      0x AE29B4 : 0x FC31DE
     </div>
   </div>
 

@@ -1,12 +1,19 @@
+@font-face {
+  font-family: 'px437';
+  src: url('fonts/px437_ibm.woff') format('woff'),
+    url('fonts/px437_ibm.ttf') format('truetype');
+}
+
 :root {
-  --primary-color: #00f0ff;
-  --bg-color: #001824;
-  --grid-color: rgba(0, 240, 255, 0.1);
+  --primary-color: #16b6a9;
+  --bg-color: #001414;
+  --grid-color: rgba(22, 182, 169, 0.1);
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--primary-color);
+  /* font-family: px437; */
   font-family: monospace;
   min-height: 100vh;
 }
@@ -14,9 +21,9 @@ body {
 .retro-container {
   border: 1px solid var(--primary-color);
   padding: 20px;
-  margin: 20px;
-  background: linear-gradient(rgba(0, 240, 255, 0.05),
-      rgba(0, 240, 255, 0.02));
+  /* margin: 20px; */
+  background: linear-gradient(rgba(22, 182, 169, 0.05),
+      rgba(22, 182, 169, 0.02));
 }
 
 .retro-header {
@@ -32,8 +39,8 @@ body {
 }
 
 .grid-item {
-  background-color: rgba(0, 240, 255, 0.1);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background-color: rgba(22, 182, 169, 0.1);
+  border: 1px solid rgba(22, 182, 169, 0.3);
   padding: 10px;
   text-align: center;
   font-size: 18px;
@@ -57,7 +64,7 @@ body {
 
 .retro-progress {
   height: 20px;
-  background-color: rgba(0, 240, 255, 0.1);
+  background-color: rgba(22, 182, 169, 0.1);
   border: 1px solid var(--primary-color);
 }
 
@@ -93,4 +100,26 @@ body {
   .grid-item {
     font-size: 14px;
   }
+}
+
+/* 增加 CRT 效果 */
+.retro-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px);
+  pointer-events: none;
+  z-index: 1;
 }
