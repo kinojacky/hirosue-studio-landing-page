@@ -1,10 +1,10 @@
 const CACHE_NAME = 'shuttle-bus-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/css/styles.css',
-  '/js/routes.js',
-  '/manifest.json'
+  '/boring-works/mediapolis-shuttle-bus-tracking-web-app/',
+  '/boring-works/mediapolis-shuttle-bus-tracking-web-app/index.html',
+  '/boring-works/mediapolis-shuttle-bus-tracking-web-app/css/styles.css',
+  '/boring-works/mediapolis-shuttle-bus-tracking-web-app/js/routes.js',
+  '/boring-works/mediapolis-shuttle-bus-tracking-web-app/manifest.json'
 ];
 
 self.addEventListener('install', event => {
