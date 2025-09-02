@@ -1,7 +1,7 @@
 {
   "name": "Mediapolis Shuttle Bus Tracker",
   "short_name": "Shuttle Bus",
-  "start_url": "/",
+  "start_url": "/boring-works/mediapolis-shuttle-bus-tracking-web-app/",
   "display": "standalone",
   "background_color": "#2F314D",
   "theme_color": "#2F314D",
